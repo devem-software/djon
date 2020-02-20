@@ -1,3 +1,4 @@
-module.exports = (str) => {
-  console.log(`${str}`);
-};
+module.exports = DJ = {
+  utils = require('./utils'),
+  security = require('./security'),
+}
