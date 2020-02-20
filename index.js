@@ -1,3 +1,3 @@
 module.exports = (str) => {
-    console.log(`${str}`);
+  console.log(`${str}`);
 };
