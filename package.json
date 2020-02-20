@@ -1,5 +1,5 @@
 {
-  "name": "@djon/djon",
+  "name": "djon",
   "version": "0.0.1-prealpha",
   "description": "NoSql database administrator for desktop applications with nwjs (node-webkit) and electron",
   "main": "index.js",
