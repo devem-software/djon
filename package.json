@@ -1,0 +1,25 @@
+{
+  "name": "@djon/djon",
+  "version": "0.0.1-prealpha",
+  "description": "NoSql database administrator for desktop applications with nwjs (node-webkit) and electron",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "hhtps://github.com/devemloop/DJon"
+  },
+  "keywords": [
+    "database",
+    "nosql",
+    "djon",
+    "json",
+    "nwjs",
+    "electron",
+    "desktop",
+    "javascript"
+  ],
+  "author": "Edwin Marroquin <devemloop@gmail.com>",
+  "license": "ISC"
+}
