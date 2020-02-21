@@ -7,7 +7,6 @@
     "test": "jest",
     "test:coverage": "jest --verbose --coverage"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "hhtps://github.com/devemloop/DJon"

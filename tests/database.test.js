@@ -7,11 +7,26 @@
 import path from 'path';
 import database from '../src/database/index';
 
+const folderPath = path.resolve(path.join(path.resolve(path.dirname('')), 'storage'));
+const nameFile = 'users';
+const extFile = 'json';
+
 describe('Database actions', () => {
   test('Create database', () => {
     expect(database.create({
-      name: 'base de datos',
-      path: path.resolve(path.join(path.resolve(path.dirname('')), 'storage')),
+      name: nameFile,
+      path: folderPath,
+      ext: extFile,
     })).toBe(undefined);
+  });
+
+  test('Connect Database', () => {
+    expect(database.connect(path.join(folderPath, `${nameFile}.${extFile}`))).toEqual({
+      header: {
+        name: nameFile,
+        version: '0.0.1',
+      },
+      body: {},
+    });
   });
 });
