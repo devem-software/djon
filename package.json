@@ -1,11 +1,12 @@
 {
   "name": "djon",
-  "version": "0.0.1-prealpha",
+  "version": "0.0.1",
   "description": "NoSql database administrator for desktop applications with nwjs (node-webkit) and electron",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "hhtps://github.com/devemloop/DJon"
@@ -21,5 +22,17 @@
     "javascript"
   ],
   "author": "Edwin Marroquin <devemloop@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "crypto-js": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-jest": "^25.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "^25.1.0"
+  }
 }

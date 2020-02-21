@@ -1,4 +1,2 @@
-module.exports = DJ = {
-  utils = require('./utils'),
-  security = require('./security'),
-}
+/* eslint-disable import/extensions */
+import './src/index.js';
