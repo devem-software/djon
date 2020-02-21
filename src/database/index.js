@@ -27,9 +27,11 @@ const database = {
     };
     const existsFolder = fs.existsSync(pathDB);
 
-    if (!existsFolder) fs.mkdirSync(pathDB, {
-      recursive: true
-    }, 755);
+    if (!existsFolder) {
+      fs.mkdirSync(pathDB, {
+        recursive: true,
+      }, 755);
+    }
 
     const file = path.join(pathDB, `${nameDB}.${extensionDB}`);
     const existsFile = fs.existsSync(file);
@@ -41,12 +43,11 @@ const database = {
     }
   },
   connect(dataPath) {
-    console.log(dataPath);
     const data = JSON.parse(fs.readFileSync(dataPath));
     return data;
   },
-  purge(dataPath) {},
-  delete(dtaPath) {},
+  // purge(dataPath) {},
+  // delete(dtaPath) {},
 };
 
 database.create({
@@ -54,6 +55,15 @@ database.create({
   path: path.resolve(path.join(path.resolve(path.dirname('')), 'storage/home')),
 });
 
-// console.log(database.connect(path.resolve(path.join(path.resolve(path.dirname('')), 'storage/home/base de datos.json'))));
-
+/**
+ * console.log(database.connect(
+ *  path.resolve(
+ *    path.join(
+ *      path.resolve(path.dirname('')),
+ *      'storage/home/base de datos.json'
+ *      )
+ *    )
+ *   )
+ * );
+ */
 export default database;

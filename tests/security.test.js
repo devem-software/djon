@@ -4,10 +4,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import security from '../src/security/index';
+// import security from '../src/security/index';
 
 describe('Security Actions', () => {
   test('Test Securiity Initialize', () => {
-    console.log(security);
+    // console.log(security);
   });
 });
