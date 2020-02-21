@@ -6,16 +6,36 @@
 
 import utils from '../src/utils/index';
 
-test('Testing camelize utility', () => {
-  expect(utils.camelize('_hello_world')).toBe('helloWorld');
-  expect(utils.camelize('-hello-world')).toBe('helloWorld');
-  expect(utils.camelize('.hello.world')).toBe('helloWorld');
+describe('Utils Camelize', () => {
+  test('Testing camelize utility _hellow_world', () => {
+    expect(utils.camelize('_hello_world')).toBe('helloWorld');
+  });
+  test('Testing camelize utility -hellow-world', () => {
+    expect(utils.camelize('-hello-world')).toBe('helloWorld');
+  });
+  test('Testing camelize utility .hellow.world', () => {
+    expect(utils.camelize('.hello.world')).toBe('helloWorld');
+  });
+  test('Testing camelize utility hellow_world', () => {
+    expect(utils.camelize('hello_world')).toBe('helloWorld');
+  });
 
-  expect(utils.camelize('hello_world')).toBe('helloWorld');
-  expect(utils.camelize('hello-world')).toBe('helloWorld');
-  expect(utils.camelize('hello.world')).toBe('helloWorld');
+  test('Testing camelize utility hellow-world', () => {
+    expect(utils.camelize('hello-world')).toBe('helloWorld');
+  });
 
-  expect(utils.camelize('-hello_world')).toBe('helloWorld');
-  expect(utils.camelize('_hello-world')).toBe('helloWorld');
-  expect(utils.camelize('hello.-world')).toBe('helloWorld');
+  test('Testing camelize utility hellow.world', () => {
+    expect(utils.camelize('hello.world')).toBe('helloWorld');
+  });
+
+  test('Testing camelize utility -hellow_world', () => {
+    expect(utils.camelize('-hello_world')).toBe('helloWorld');
+  });
+
+  test('Testing camelize utility _hellow-world', () => {
+    expect(utils.camelize('_hello-world')).toBe('helloWorld');
+  });
+  test('Testing camelize utility hellow.-_world', () => {
+    expect(utils.camelize('hello.-world')).toBe('helloWorld');
+  });
 });

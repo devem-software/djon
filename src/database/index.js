@@ -2,6 +2,41 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-const database = {};
+import fs from 'fs';
+import path from 'path';
 
+const database = {
+  create(options = {
+    name: 'database',
+    path: '/',
+    version: '0.0.1',
+    extension: 'json',
+    data: {},
+  }) {
+    const nameDB = options.name || 'database';
+    const pathDB = options.path || '/';
+    const versionDB = options.version || '0.0.1';
+    const extensionDB = options.extension || 'json';
+
+    const dataDB = options.data || {
+      header: {
+        name: nameDB,
+        version: versionDB,
+      },
+      body: {},
+    };
+    const existsFolder = fs.existsSync(pathDB);
+
+    if (!existsFolder) fs.mkdirSync(pathDB, { recursive: true }, 755);
+
+    const file = path.join(pathDB, `${nameDB}.${extensionDB}`);
+    const existsFile = fs.existsSync(file);
+
+    if (!existsFile) {
+      fs.writeFile(file, JSON.stringify(dataDB), (err) => {
+        if (err) throw err;
+      });
+    }
+  },
+};
 export default database;

@@ -4,7 +4,8 @@
   "description": "NoSql database administrator for desktop applications with nwjs (node-webkit) and electron",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --verbose --coverage"
   },
   "type": "module",
   "repository": {
@@ -23,9 +24,6 @@
   ],
   "author": "Edwin Marroquin <devemloop@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "crypto-js": "^4.0.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
@@ -34,5 +32,8 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
     "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "crypto-js": "^4.0.0"
   }
 }

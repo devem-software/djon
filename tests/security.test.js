@@ -6,6 +6,8 @@
 
 import security from '../src/security/index';
 
-test('Test Securiity Initialize', () => {
-  expect(security.initialize('hola mundo')).toBe('hola mundo');
+describe('Security Actions', () => {
+  test('Test Securiity Initialize', () => {
+    console.log(security);
+  });
 });
