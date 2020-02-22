@@ -1,32 +1,35 @@
+/* eslint-disable import/extensions */
 // Copyright (c) 2020 Edwin Marroquin <devemloop@gmail.com>
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 import fs from 'fs';
 import path from 'path';
+import security from '../security/index.js';
+import utils from '../utils/index.js';
 
 const database = {
-  create(options = {
+  async create(options = {
     name: 'database',
     path: '/',
     version: '0.0.1',
-    extension: 'json',
-    data: {},
+    extension: 'db',
   }) {
     const nameDB = options.name || 'database';
     const pathDB = options.path || '/';
     const versionDB = options.version || '0.0.1';
-    const extensionDB = options.extension || 'json';
+    const extensionDB = options.extension || 'db';
 
-    const dataDB = options.data || {
+    const dataDB = {
       header: {
         name: nameDB,
         version: versionDB,
       },
       body: {},
     };
-    const existsFolder = fs.existsSync(pathDB);
 
+    const existsFolder = utils.Fs.checkFolder(pathDB);
+    console.log('FOLDER =>', existsFolder);
     if (!existsFolder) {
       fs.mkdirSync(pathDB, {
         recursive: true,
@@ -34,36 +37,37 @@ const database = {
     }
 
     const file = path.join(pathDB, `${nameDB}.${extensionDB}`);
-    const existsFile = fs.existsSync(file);
+    const existsFile = utils.Fs.checkFile(file);
 
     if (!existsFile) {
-      fs.writeFile(file, JSON.stringify(dataDB), (err) => {
+      fs.writeFile(file, security.encrypt(JSON.stringify(dataDB)), (err) => {
         if (err) throw err;
       });
     }
   },
   connect(dataPath) {
-    const data = JSON.parse(fs.readFileSync(dataPath));
-    return data;
+    setTimeout(() => {
+      let data = security.decrypt(
+        fs.readFileSync(dataPath).toString());
+      let result = JSON.parse(data)
+    }, 1000);
+    return result;
   },
-  // purge(dataPath) {},
+  purge(dataPath) {},
   // delete(dtaPath) {},
 };
 
-database.create({
-  name: 'base de datos',
-  path: path.resolve(path.join(path.resolve(path.dirname('')), 'storage/home')),
-});
+(async () => {
+  await database.create({
+    name: 'messages',
+    path: path.resolve(path.join(path.resolve(path.dirname('')), 'storage/home')),
+  });
+  await console.log(database.connect(
+    path.join(
+      path.resolve(path.dirname('')),
+      'storage/home/messages.db'
+    )
+  ))
+})()
 
-/**
- * console.log(database.connect(
- *  path.resolve(
- *    path.join(
- *      path.resolve(path.dirname('')),
- *      'storage/home/base de datos.json'
- *      )
- *    )
- *   )
- * );
- */
 export default database;

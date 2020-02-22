@@ -1,12 +1,13 @@
 {
   "name": "djon",
-  "version": "0.0.1",
+  "version": "0.0.1-202002221030",
   "description": "NoSql database administrator for desktop applications with nwjs (node-webkit) and electron",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --verbose --coverage"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "hhtps://github.com/devemloop/DJon"
