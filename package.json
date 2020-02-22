@@ -1,10 +1,6 @@
 {
   "name": "djon",
-<<<<<<< HEAD
   "version": "0.0.1-nightly-20200222114648",
-=======
-  "version": "0.0.1-nightly-20200222113248",
->>>>>>> hotfix
   "description": "NoSql database administrator for desktop applications with nwjs (node-webkit) and electron",
   "main": "index.js",
   "scripts": {
