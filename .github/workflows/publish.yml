@@ -1,21 +1,22 @@
-name: npm-publish
-on:
-  push:
-    branches:
-      - master # Change this to your default branch
+on: push
+name: Build and Publish
 jobs:
-  npm-publish:
-    name: npm-publish
+  all:
+    name: Build and Publish
     runs-on: ubuntu-latest
     steps:
-    - name: lint & Testing
+    - name: Setup node
+      uses: actions/setup-node@master
+      with:
+        version: 12
+        registry-url: 'https://registry.npmjs.org'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    - name: lint & test
       uses: shawnbot/npm-publish-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # NOTE: use the NODE_ prefix instead of NPM_ here!
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-    - name: npm publish on every push
+    - name: Publish
       uses: shawnbot/npm-publish-action@v1.0.1
-      width:
-        version: 12
-        registry-url: 'https://resgistry.npmjs.org'
