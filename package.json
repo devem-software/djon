@@ -1,6 +1,6 @@
 {
   "name": "djon",
-  "version": "0.0.1-202002221030",
+  "version": "0.0.1-nightly-20200222112713",
   "description": "NoSql database administrator for desktop applications with nwjs (node-webkit) and electron",
   "main": "index.js",
   "scripts": {
