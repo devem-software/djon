@@ -1,8 +1,3 @@
-/* eslint-disable import/extensions */
-// Copyright (c) 2020 Edwin Marroquin <devemloop@gmail.com>
-//
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
 import collection from './collection/index.js';
 import database from './database/index.js';
 import events from './events/index.js';
