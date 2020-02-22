@@ -17,8 +17,6 @@ jobs:
     - name: Build
       if: steps.cache-modules.outputs.cache-hit != 'true'
       run: npm install
-    - name: Test
-      run: npm test
     - name: Publish
       if: github.ref == 'refs/heads/master'
       uses: mikeal/merge-release@master
