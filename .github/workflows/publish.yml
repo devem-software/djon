@@ -16,4 +16,4 @@ jobs:
       - run: yarn install
       - run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: 5d72997c-3118-4621-a75c-d0897ee72077
+          NODE_AUTH_TOKEN: ${{5d72997c-3118-4621-a75c-d0897ee72077}}
