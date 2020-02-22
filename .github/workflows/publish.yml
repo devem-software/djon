@@ -4,18 +4,18 @@ on:
     branches:
       - master # Change this to your default branch
 jobs:
-  all:
+  npm-publish:
     name: npm-publish
     runs-on: ubuntu-latest
     steps:
-      - name: lint & Testing
-        uses: shawnbot/npm-publish-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # NOTE: use the NODE_ prefix instead of NPM_ here!
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-      - name: npm publish on every push
-        uses: shawnbot/npm-publish-action@v1.0.1
-        width:
-          version: 12
-          registry-url: 'https://resgistry.npmjs.org'
+    - name: lint & Testing
+      uses: shawnbot/npm-publish-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # NOTE: use the NODE_ prefix instead of NPM_ here!
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    - name: npm publish on every push
+      uses: shawnbot/npm-publish-action@v1.0.1
+      width:
+        version: 12
+        registry-url: 'https://resgistry.npmjs.org'
