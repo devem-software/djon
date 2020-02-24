@@ -20,11 +20,18 @@ const database = {
         name: nameDB,
         version: versionDB,
       },
-      body: {},
+      body: [
+        {
+          edfemabu80250114 : {
+            nombre: 'edwin fernando',
+            apellido : 'marroquin bustos',
+          }
+        }
+      ],
     };
 
     const existsFolder = utils.Fs.checkFolder(pathDB);
-    console.log('FOLDER =>', existsFolder);
+
     if (!existsFolder) {
       fs.mkdirSync(pathDB, {
         recursive: true,
@@ -36,33 +43,47 @@ const database = {
 
     if (!existsFile) {
       fs.writeFile(file, security.encrypt(JSON.stringify(dataDB)), (err) => {
+      // fs.writeFile(file, JSON.stringify(dataDB), (err) => {
+        if (err) throw err;
+      });
+    } else {
+      throw 'This database already exists !';
+    }
+  },
+  connect(dataPath) {
+    let data = security.decrypt(
+      fs.readFileSync(dataPath).toString());
+    return JSON.parse(data)
+
+  },
+  purge(filePath) {
+    let dP = path.resolve(path.join(path.dirname(''), filePath));
+    let data = fs.readFileSync(filePath);
+    let fullData = JSON.parse(security.decrypt(data.toString()))
+    // let fullData = JSON.parse(data.toString());
+    let dataBody = fullData.body
+    let dataHeader = fullData.header
+
+    console.log(fullData);
+    console.log(fullData);
+
+    // const existsFile = utils.Fs.checkFile(filePath);
+
+    // if (!existsFile) {
+    if (true) {
+      fs.writeFile(file, security.encrypt(JSON.stringify({
+        header: dataHeader,
+        body: []
+      })), (err) => {
         if (err) throw err;
       });
     }
   },
-  connect(dataPath) {
-    setTimeout(() => {
-      let data = security.decrypt(
-        fs.readFileSync(dataPath).toString());
-      let result = JSON.parse(data)
-    }, 1000);
-    return result;
+
+  delete(filePath) {
+    fs.unlinkSync(filePath)
   },
-  purge(dataPath) {},
-  // delete(dtaPath) {},
 };
 
-(async () => {
-  await database.create({
-    name: 'messages',
-    path: path.resolve(path.join(path.resolve(path.dirname('')), 'storage/home')),
-  });
-  await console.log(database.connect(
-    path.join(
-      path.resolve(path.dirname('')),
-      'storage/home/messages.db'
-    )
-  ))
-})()
 
 export default database;
