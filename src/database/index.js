@@ -4,33 +4,31 @@ import security from '../security/index.js';
 import utils from '../utils/index.js';
 
 const database = {
-  async create(options = {
+  __encrypDataBase(data) {
+    return security.encrypt(JSON.stringify(data))
+  },
+  __decrypDataBase(data) {
+    return JSON.parse(security.decrypt(data));
+  },
+  create(options = {
     name: 'database',
     path: '/',
     version: '0.0.1',
     extension: 'db',
   }) {
-    const nameDB = options.name || 'database';
-    const pathDB = options.path || '/';
-    const versionDB = options.version || '0.0.1';
-    const extensionDB = options.extension || 'db';
-
-    const dataDB = {
+    let nameDB = options.name || 'database';
+    let pathDB = options.path || '/';
+    let versionDB = options.version || '0.0.1';
+    let extensionDB = options.extension || 'db';
+    let dataDB = {
       header: {
         name: nameDB,
         version: versionDB,
       },
-      body: [
-        {
-          edfemabu80250114 : {
-            nombre: 'edwin fernando',
-            apellido : 'marroquin bustos',
-          }
-        }
-      ],
+      body: [],
     };
 
-    const existsFolder = utils.Fs.checkFolder(pathDB);
+    let existsFolder = utils.Fs.checkFolder(pathDB);
 
     if (!existsFolder) {
       fs.mkdirSync(pathDB, {
@@ -38,52 +36,50 @@ const database = {
       }, 755);
     }
 
-    const file = path.join(pathDB, `${nameDB}.${extensionDB}`);
-    const existsFile = utils.Fs.checkFile(file);
+    let file = path.join(pathDB, `${nameDB}.${extensionDB}`);
+    let existsFile = utils.Fs.checkFile(file);
 
     if (!existsFile) {
-      fs.writeFile(file, security.encrypt(JSON.stringify(dataDB)), (err) => {
-      // fs.writeFile(file, JSON.stringify(dataDB), (err) => {
+      fs.writeFile(file, this.__encryptDataBase(dataDB), (err) => {
         if (err) throw err;
       });
     } else {
       throw 'This database already exists !';
     }
   },
-  connect(dataPath) {
-    let data = security.decrypt(
-      fs.readFileSync(dataPath).toString());
-    return JSON.parse(data)
 
+  connect(dataPath) {
+    return this.__decrypDataBase(dataPath);
   },
+
   purge(filePath) {
     let dP = path.resolve(path.join(path.dirname(''), filePath));
-    let data = fs.readFileSync(filePath);
-    let fullData = JSON.parse(security.decrypt(data.toString()))
-    // let fullData = JSON.parse(data.toString());
-    let dataBody = fullData.body
-    let dataHeader = fullData.header
+    let data = this.connect(filePath);
+    let dataBody = data.body
+    let dataHeader = data.header
 
-    console.log(fullData);
-    console.log(fullData);
+    let existsFile = utils.Fs.checkFile(filePath);
 
-    // const existsFile = utils.Fs.checkFile(filePath);
-
-    // if (!existsFile) {
-    if (true) {
-      fs.writeFile(file, security.encrypt(JSON.stringify({
+    try {
+      fs.writeFile(file, this.__encryptDataBase({
         header: dataHeader,
         body: []
-      })), (err) => {
+      }), (err) => {
         if (err) throw err;
       });
+    } catch (err) {
+      console.error(err.message)
     }
   },
 
   delete(filePath) {
-    fs.unlinkSync(filePath)
+    let existsFile = utils.Fs.checkFile(filePath);
+    try {
+      fs.unlinkSync(filePath)
+    } catch (err) {
+      console.error(err.message)
+    }
   },
 };
-
 
 export default database;
