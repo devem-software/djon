@@ -2,6 +2,15 @@
 import zlib from 'zlib';
 import Types from './utilityTypes.js';
 
+/*
+TODO: [
+  {
+    Type: Fix,
+    Description: 'Fix return value from expand',
+    Error: 'incorrect header check'
+  }
+]
+*/
 const utilityZip = {
   OPTIONS: {
     windowBits: 14,
@@ -16,15 +25,6 @@ const utilityZip = {
   compress(data) {
     return zlib.deflateSync(this.setBuffer(data), this.OPTIONS).toString('base64');
   },
-  /*
-  TODO: [
-    {
-      Type: Fix,
-      Description: 'Fix return value from expand',
-      Error: 'incorrect header check'
-    }
-  ]
-  */
   expand(compress) {
     return zlib.inflateSync(new Buffer.From(compress, 'base64'), this.OPTIONS).toString();
   },
