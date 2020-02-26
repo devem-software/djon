@@ -2,10 +2,19 @@
 
 NoSql database administrator for desktop applications with nwjs (node-webkit) and electron
 
-## Database
-
-## Collection
-
-## Security
-
-## Utilities
+|Module|Status|
+|:--|--:|
+| **COLLECTION** |![Proyectado](https://img.shields.io/badge/collection:-proyectado-blue)|
+| **DATABASE** | ![Presenta errores](https://img.shields.io/badge/database:-desarrollo-red)|
+| - create | <span style="color:orange">En desarrollo</span>|
+| - connect | <span style="color:orange">En desarrollo</span>|
+| - purge | <span style="color:green">Estable</span>|
+| - delete | <span style="color:green">Estable</span>|
+| **EVENTS** | ![Proyectado](https://img.shields.io/badge/events:-proyectado-blue)|
+| **SECURITY** | ![Precaucion](https://img.shields.io/badge/security:-desarrollo-yellow)|
+| - encrypt | <span style="color:orange">En desarrollo</span>|
+| - decrypt | <span style="color:orange">En desarrollo</span>|
+| **UTILITIES** | ![Estable](https://img.shields.io/badge/utils:-stable-green)|
+| - strings | <span style="color:green">Estable</span>|
+| - types | <span style="color:green">Estable</span>|
+| - zip | <span style="color:tomato">En desarrollo</span>|
