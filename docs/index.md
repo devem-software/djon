@@ -5,7 +5,7 @@ Esta documentación estará en constante actualización, al igual dado que la li
 DJon se divide en 5 funcionalidades principales:
 
 - DJ.on
-  1. [ ] [ ] [ ] collection
+  1. [ ]  [ ]  [ ] collection
       - En este apartado el modulo `collection` es empleado para la administración de las colecciones almacenadas dentro de una base de datos
   2. [x] [x] [ ] database
   3. [ ] [ ] [ ] events
