@@ -1,26 +1,30 @@
+/* eslint-disable no-console */
+/* eslint-disable import/extensions */
 import fs from 'fs';
 import path from 'path';
 import security from '../security/index.js';
 import utils from '../utils/index.js';
 
 const database = {
-  __encrypDataBase(data) {
-    return security.encrypt(JSON.stringify(data))
+  databaseEncrypt(data) {
+    return security.encrypt(JSON.stringify(data));
+    // return security.encrypt(JSON.stringify(utils.Zip.compress(data)))
   },
-  __decrypDataBase(data) {
+  databaseDecrypt(data) {
     return JSON.parse(security.decrypt(data));
+    // return JSON.parse(security.decrypt(utils.Zip.expand(data)));
   },
   create(options = {
     name: 'database',
     path: '/',
     version: '0.0.1',
-    extension: 'db',
+    extension: 'dbdjon',
   }) {
-    let nameDB = options.name || 'database';
-    let pathDB = options.path || '/';
-    let versionDB = options.version || '0.0.1';
-    let extensionDB = options.extension || 'db';
-    let dataDB = {
+    const nameDB = options.name || 'database';
+    const pathDB = options.path || '/';
+    const versionDB = options.version || '0.0.1';
+    const extensionDB = options.extension || 'dbdjon';
+    const dataDB = {
       header: {
         name: nameDB,
         version: versionDB,
@@ -28,7 +32,7 @@ const database = {
       body: [],
     };
 
-    let existsFolder = utils.Fs.checkFolder(pathDB);
+    const existsFolder = utils.Fs.checkFolder(pathDB);
 
     if (!existsFolder) {
       fs.mkdirSync(pathDB, {
@@ -36,50 +40,114 @@ const database = {
       }, 755);
     }
 
-    let file = path.join(pathDB, `${nameDB}.${extensionDB}`);
-    let existsFile = utils.Fs.checkFile(file);
+    const file = path.join(pathDB, `${nameDB}.${extensionDB}`);
+    const existsFile = utils.Fs.checkFile(file);
 
     if (!existsFile) {
-      fs.writeFile(file, this.__encryptDataBase(dataDB), (err) => {
+      fs.writeFile(file, this.databaseEncrypt(dataDB), (err) => {
         if (err) throw err;
       });
     } else {
-      throw 'This database already exists !';
+      console.warn('This database already exists !');
     }
   },
 
   connect(dataPath) {
-    return this.__decrypDataBase(dataPath);
+    return this.databaseDecrypt(dataPath);
   },
 
   purge(filePath) {
-    let dP = path.resolve(path.join(path.dirname(''), filePath));
-    let data = this.connect(filePath);
-    let dataBody = data.body
-    let dataHeader = data.header
-
-    let existsFile = utils.Fs.checkFile(filePath);
+    const data = this.connect(filePath);
+    const dataBody = [];
+    const dataHeader = data.header;
 
     try {
-      fs.writeFile(file, this.__encryptDataBase({
+      fs.writeFile(filePath, this.databaseEncrypt({
         header: dataHeader,
-        body: []
+        body: dataBody,
       }), (err) => {
         if (err) throw err;
       });
     } catch (err) {
-      console.error(err.message)
+      console.warn(err.message);
     }
   },
 
   delete(filePath) {
-    let existsFile = utils.Fs.checkFile(filePath);
+    utils.Fs.checkFile(filePath);
     try {
-      fs.unlinkSync(filePath)
+      fs.unlinkSync(filePath);
     } catch (err) {
-      console.error(err.message)
+      console.warn(err.message);
     }
   },
 };
+
+// database.create({
+//   name: 'prueba',
+//   version: '0.0.22',
+//   data: {
+//     "results": [{
+//       "gender": "male",
+//       "name": {
+//         "title": "mr",
+//         "first": "brad",
+//         "last": "gibson"
+//       },
+//       "location": {
+//         "street": "9278 new road",
+//         "city": "kilcoole",
+//         "state": "waterford",
+//         "postcode": "93027",
+//         "coordinates": {
+//           "latitude": "20.9267",
+//           "longitude": "-7.9310"
+//         },
+//         "timezone": {
+//           "offset": "-3:30",
+//           "description": "Newfoundland"
+//         }
+//       },
+//       "email": "brad.gibson@example.com",
+//       "login": {
+//         "uuid": "155e77ee-ba6d-486f-95ce-0e0c0fb4b919",
+//         "username": "silverswan131",
+//         "password": "firewall",
+//         "salt": "TQA1Gz7x",
+//         "md5": "dc523cb313b63dfe5be2140b0c05b3bc",
+//         "sha1": "7a4aa07d1bedcc6bcf4b7f8856643492c191540d",
+//         "sha256": "74364e96174afa7d17ee52dd2c9c7a4651fe1254f471a78bda0190135dcd3480"
+//       },
+//       "dob": {
+//         "date": "1993-07-20T09:44:18.674Z",
+//         "age": 26
+//       },
+//       "registered": {
+//         "date": "2002-05-21T10:59:49.966Z",
+//         "age": 17
+//       },
+//       "phone": "011-962-7516",
+//       "cell": "081-454-0666",
+//       "id": {
+//         "name": "PPS",
+//         "value": "0390511T"
+//       },
+//       "picture": {
+//         "large": "https://randomuser.me/api/portraits/men/75.jpg",
+//         "medium": "https://randomuser.me/api/portraits/med/men/75.jpg",
+//         "thumbnail": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+//       },
+//       "nat": "IE"
+//     }],
+//     "info": {
+//       "seed": "fea8be3e64777240",
+//       "results": 1,
+//       "page": 1,
+//       "version": "1.3"
+//     }
+//   }
+// })
+
+// console.log(database.connect('prueba.zip'));
 
 export default database;

@@ -1,32 +1,30 @@
 import fs from 'fs';
+
 const utilityFS = {
-  __checkPath(path) {
-    let exists = fs.existsSync(path);
+  fsCheckPath(path) {
+    const exists = fs.existsSync(path);
     if (!exists) {
       return false;
-    } else {
-      return true;
-    };
+    }
+    return true;
   },
   checkFolder(folderPath) {
-    if (!this.__checkPath(folderPath)) {
+    if (!this.fsCheckPath(folderPath)) {
       return false;
-    } else {
-      return fs.statSync(folderPath).isDirectory();
     }
+    return fs.statSync(folderPath).isDirectory();
   },
   checkFile(filePath) {
-    if (!this.__checkPath(filePath)) {
+    if (!this.fsCheckPath(filePath)) {
       return false;
-    } else {
-      return fs.statSync(filePath).isFile();
     }
+    return fs.statSync(filePath).isFile();
   },
   checkFolderExists(folderPath) {
-    return fs.existsSync(folderpath);
+    return fs.existsSync(folderPath);
   },
   checkFileExists(folderPath) {
-    return fs.existsSync(folderpath);
-  }
-}
+    return fs.existsSync(folderPath);
+  },
+};
 export default utilityFS;

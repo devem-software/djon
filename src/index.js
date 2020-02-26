@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import collection from './collection/index.js';
 import database from './database/index.js';
 import events from './events/index.js';
