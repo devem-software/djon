@@ -2,7 +2,7 @@
 
 ## Version 0.0.1-nightly
 
-### <span style="background:green; padding:.125rem .5rem; border-radius:.25rem;display:flex;width: 3rem; justify-content:center">ADD</span>
+### ADD
 
 - Database
   - **create** : Create a database into custom folder width `dbjon.db` extension
@@ -29,7 +29,7 @@
 - Events
   - **on** : This called when any action is taken with the library
 
-### <span style="background:orange; padding:.125rem .5rem; border-radius:.25rem;display:flex;width: 3rem; justify-content:center">FIXED</span>
+### FIXED
 
 - Database
 - Collection
@@ -37,21 +37,21 @@
 - Utilities
 - Events
 
-### <span style="background:steelblue; padding:.125rem .5rem; border-radius:.25rem;display:flex;width: 3rem; justify-content:center">TODO</span>
+### TODO
 
 - Database
   - [ ] Implements gZip module
 - Collection
-  - **[ ] insert**
-  - **[ ] insetOne**
-  - **[ ] insetMany**
-  - **[ ] find**
-  - **[ ] update**
-  - **[ ] delete**
-  - **[ ] deleteOne**
-  - **[ ] deleteMany**
-  - **[ ] purge**
-  - **[ ] merge**
+  - [ ] **insert**
+  - [ ] **insetOne**
+  - [ ] **insetMany**
+  - [ ] **find**
+  - [ ] **update**
+  - [ ] **delete**
+  - [ ] **deleteOne**
+  - [ ] **deleteMany**
+  - [ ] **purge**
+  - [ ] **merge**
 - Security
 - Utilities
 - Events
