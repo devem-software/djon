@@ -15,7 +15,17 @@
   - **decrypt** : Decrypt database after called
 - Utilities
   - **Strings** : String management
+    - camelize
   - **Types** : Validate types variables _**[ Recommended ]**_
+    - number
+    - string
+    - boolean
+    - object
+    - array
+    - function
+    - date
+    - regex
+    - error
 - Events
   - **on** : This called when any action is taken with the library
 
@@ -30,22 +40,22 @@
 ### <span style="background:steelblue; padding:.125rem .5rem; border-radius:.25rem;display:flex;width: 3rem; justify-content:center">TODO</span>
 
 - Database
-  - Implements gZip module
+  - [ ] Implements gZip module
 - Collection
-  - **insert**
-  - **insetOne**
-  - **insetMany**
-  - **find**
-  - **update**
-  - **delete**
-  - **deleteOne**
-  - **deleteMany**
-  - **purge**
-  - **merge**
+  - **[ ] insert**
+  - **[ ] insetOne**
+  - **[ ] insetMany**
+  - **[ ] find**
+  - **[ ] update**
+  - **[ ] delete**
+  - **[ ] deleteOne**
+  - **[ ] deleteMany**
+  - **[ ] purge**
+  - **[ ] merge**
 - Security
 - Utilities
 - Events
 - MISCELLANEOUS
-  - Fix github works for npm publish
-  - Create markdown documentation
-  - Create web documentation
+  - [ ] Fix github works for npm publish
+  - [ ] Create markdown documentation
+  - [ ] Create web documentation
