@@ -1,84 +1,31 @@
-/* eslint-disable no-console */
-/* eslint-disable import/extensions */
-import fs from 'fs';
-import path from 'path';
-import security from '../security/index.js';
+import databaseFile from './databaseFile.js';
+import databaseStorage from './databaseStorage.js';
 import utils from '../utils/index.js';
 
 const database = {
-  databaseEncrypt(data) {
-    return security.encrypt(JSON.stringify(data));
-  },
-  databaseDecrypt(data) {
-    return JSON.parse(security.decrypt(data));
-  },
-  create(options = {
-    name: 'database',
-    path: '/',
-    version: '0.0.1',
-    extension: 'dbdjon',
-  }) {
-    const nameDB = options.name || 'database';
-    const pathDB = options.path || '/';
-    const versionDB = options.version || '0.0.1';
-    const extensionDB = options.extension || 'dbdjon';
-    const dataDB = {
-      header: {
-        name: nameDB,
-        version: versionDB,
-      },
-      body: [],
-    };
-
-    const existsFolder = utils.Fs.checkFolder(pathDB);
-
-    if (!existsFolder) {
-      fs.mkdirSync(pathDB, {
-        recursive: true,
-      }, 755);
-    }
-
-    const file = path.join(pathDB, `${nameDB}.${extensionDB}`);
-    const existsFile = utils.Fs.checkFile(file);
-
-    if (!existsFile) {
-      fs.writeFile(file, this.databaseEncrypt(dataDB), (err) => {
-        if (err) throw err;
-      });
-    } else {
-      console.warn('This database already exists !');
-    }
-  },
-
-  connect(dataPath) {
-    return this.databaseDecrypt(dataPath);
-  },
-
-  purge(filePath) {
-    const data = this.connect(filePath);
-    const dataBody = [];
-    const dataHeader = data.header;
-
+  storage(type) {
+    const driver = utils.Types.isString(type);
     try {
-      fs.writeFile(filePath, this.databaseEncrypt({
-        header: dataHeader,
-        body: dataBody,
-      }), (err) => {
-        if (err) throw err;
-      });
+      switch (driver) {
+        case 'File':
+          console.log('Database in FILE');
+          break;
+        case 'Storage':
+          console.log('Database in LOCALSTORAGE');
+          break;
+        default:
+          throw new Error(`this Value [${driver}] Only support values "File" or "Storage"`);
+      }
     } catch (err) {
-      console.warn(err.message);
+      console.error(err.message);
     }
   },
-
-  delete(filePath) {
-    utils.Fs.checkFile(filePath);
-    try {
-      fs.unlinkSync(filePath);
-    } catch (err) {
-      console.warn(err.message);
-    }
-  },
+  create() {},
+  connect() {},
+  purge() {},
+  delete() {},
 };
+
+database.storage('File');
 
 export default database;

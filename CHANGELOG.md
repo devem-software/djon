@@ -16,7 +16,7 @@
 - Utilities
   - **Strings** : String management
     - camelize
-  - **Types** : Validate types variables _**[ Recommended ]**_
+  - **Types** : Validate the type of data and return the value if it is true _**[ Recommended ]**_
     - number
     - string
     - boolean

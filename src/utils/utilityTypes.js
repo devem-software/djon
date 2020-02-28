@@ -6,7 +6,7 @@ const utilyTypes = {
       if (value.constructor.name.toLowerCase() !== type) {
         throw new Error({ Error: `${value.toString()} not is a ${type}` });
       } else {
-        result = true;
+        result = value;
       }
     } catch (err) {
       console.error(err);
