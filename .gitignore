@@ -18,6 +18,7 @@ yarn-error.log*
 # other files
 .editorconfig
 .npmignore
+.markdownlint.json
 
 # coverage testing
 coverage/
