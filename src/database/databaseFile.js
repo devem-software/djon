@@ -5,7 +5,7 @@ import path from 'path';
 import security from '../security/index.js';
 import utils from '../utils/index.js';
 
-const databaseFile = {
+const fileDB = {
   databaseEncrypt(data) {
     return security.encrypt(JSON.stringify(data));
   },
@@ -77,4 +77,4 @@ const databaseFile = {
 
 };
 
-export default databaseFile;
+export default fileDB;

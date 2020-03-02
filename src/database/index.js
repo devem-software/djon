@@ -1,5 +1,5 @@
-import databaseFile from './databaseFile.js';
-import databaseStorage from './databaseStorage.js';
+import fileDB from './databaseFile.js';
+import storageDB from './databaseStorage.js';
 import utils from '../utils/index.js';
 
 const database = {
