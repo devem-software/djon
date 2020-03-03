@@ -4,11 +4,11 @@ Esta documentación estará en constante actualización, al igual dado que la li
 
 DJon se divide en 5 funcionalidades principales:
 
-[1]: ./collection.md "Colección"
-[2]: ./database.md "Base de datos"
-[3]: ./events.md "Eventos"
-[4]: ./security.md "Seguridad"
-[5]: ./utils.md "Utilidades"
+[1]: collection.md "Colección"
+[2]: database.md "Base de datos"
+[3]: events.md "Eventos"
+[4]: security.md "Seguridad"
+[5]: utils.md "Utilidades"
 
 [a]: https://img.shields.io/badge/collection:-proyectado-blue
 [b]: https://img.shields.io/badge/database:-desarrollo-red
@@ -43,7 +43,3 @@ DJon se divide en 5 funcionalidades principales:
 |![Presenta errores](https://img.shields.io/badge/&lt;MODULO&gt;:-desarrollo-red)|En desarrollo, aun presenta errores inesperados|
 |![Puede ser usado con precaución](https://img.shields.io/badge/&lt;MODULO&gt;:-desarrollo-yellow)|Puede ser usado pero con precaución|
 |![Modulo estable](https://img.shields.io/badge/&lt;MODULO&gt;:-stable-green)|Completamente|funcional
-
-Esto es un texto con nota al pie [^1]
-
-[^1]: Esto es una nota al pie de página.
